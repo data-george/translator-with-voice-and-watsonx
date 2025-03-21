@@ -2,6 +2,8 @@
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 from ibm_watson_machine_learning.foundation_models import Model
 
+LANGUAGE = 'Spanish'
+
 # placeholder for Watsonx_API and Project_id incase you need to use the code outside this environment
 # API_KEY = "Your WatsonX API"
 PROJECT_ID= "skills-network"
@@ -41,7 +43,8 @@ def text_to_speech(text, voice=""):
 
 def watsonx_process_message(user_message):
     # Set the prompt for Watsonx API
-    prompt = f"""Respond to the query: ```{user_message}```"""
+    prompt = f"""You are an assistant helping translate sentences from English into Spanish.
+    Translate the query to {LANGUAGE}: ```{user_message}```."""
     response_text = model.generate_text(prompt=prompt)
     print("wastonx response:", response_text)
     return response_text
